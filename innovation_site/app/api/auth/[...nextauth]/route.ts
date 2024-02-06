@@ -1,5 +1,6 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
+import { createUser } from "@/lib/mongodb/mongodb";
 
 const handler = NextAuth({
   session: {

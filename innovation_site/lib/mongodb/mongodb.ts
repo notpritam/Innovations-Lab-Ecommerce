@@ -20,7 +20,7 @@ const connectDB = async () => {
 
 // Create User Function
 
-const createUser = async (user) => {
+const createUser = async (user: any) => {
   if (!isConnected) {
     await connectDB();
   }
@@ -33,13 +33,13 @@ const createUser = async (user) => {
     return false;
   }
 
-  const newUser = {
+  const userDetails = {
     name: user.name,
     email: user.email,
     image: user.image,
   };
 
-  const newUser = new User(newUser);
+  const newUser = new User(userDetails);
   newUser.save();
   return true;
 };
