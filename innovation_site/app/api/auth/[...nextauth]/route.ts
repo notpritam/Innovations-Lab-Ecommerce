@@ -13,8 +13,16 @@ const handler = NextAuth({
   ],
 
   callbacks: {
-    async signIn({ account, profile }) {
+    async signIn({ user, account, profile }) {
       console.log("signIn", account, profile);
+
+      const result = await createUser(user);
+      if (result) {
+        console.log("User created Successfully!");
+      } else {
+        console.log("Something went wrong");
+      }
+
       return true;
     },
   },
