@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Inter as FontSans } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
-import { SessionProvider } from "next-auth/react";
 
 export const fontSans = FontSans({
   subsets: ["latin"],
@@ -20,17 +19,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <SessionProvider>
-      <html lang="en">
-        <body
-          className={cn(
-            "min-h-screen bg-background font-sans dark antialiased",
-            fontSans.variable
-          )}
-        >
-          {children}
-        </body>
-      </html>
-    </SessionProvider>
+    <html lang="en">
+      <body
+        className={cn(
+          "min-h-screen bg-background font-sans dark antialiased",
+          fontSans.variable
+        )}
+      >
+        {children}
+      </body>
+    </html>
   );
 }
