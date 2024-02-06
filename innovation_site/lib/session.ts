@@ -6,6 +6,11 @@ export const session = async ({ session, token }: any) => {
   return session;
 };
 
+export const getSession = async () => {
+  const authUserSession = await getServerSession();
+  return authUserSession;
+};
+
 export const getUserSession = async (): Promise<User | null> => {
   const authUserSession = await getServerSession({
     callbacks: {
