@@ -2,8 +2,12 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import SessionWrapper from "@/components/SessionWrapper";
+import { cn } from "@/lib/utils";
 
 const inter = Inter({ subsets: ["latin"] });
+
+//Mine
+import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -17,8 +21,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <SessionWrapper>{children}</SessionWrapper>
+      <body
+        className={cn(
+          inter.className,
+          "min-h-screen bg-background font-sans dark antialiased"
+        )}
+      >
+        <SessionWrapper>
+          {children}
+          <Toaster />
+        </SessionWrapper>
       </body>
     </html>
   );

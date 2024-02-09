@@ -1,3 +1,4 @@
+import { checkUser } from "@/lib/db/mongodb";
 import { NextAuthOptions } from "next-auth";
 
 import NextAuth from "next-auth/next";
@@ -22,9 +23,24 @@ const authOptions: NextAuthOptions = {
   ],
 
   callbacks: {
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = user.id;
+      }
+      return token;
+    },
     async signIn({ account, profile }) {
       console.log("signIn", account, profile);
-      return true;
+      const email = profile?.email || "";
+      const status = await checkUser(email);
+
+      if (!status) {
+        console.log("You do not have permission to sign in.");
+        return false;
+      } else {
+        console.log("You have permission to sign in.");
+        return true;
+      }
     },
   },
 };
