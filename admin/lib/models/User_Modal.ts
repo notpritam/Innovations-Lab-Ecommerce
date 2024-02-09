@@ -5,6 +5,14 @@ import mongoose, { Schema } from "mongoose";
 //   User = "user",
 // }
 
+export interface IUser extends Document {
+  name: string;
+  email: string;
+  // password: string;
+  image: string;
+  role: string;
+}
+
 const userSchema = new Schema(
   {
     name: { type: String, required: true },
@@ -21,6 +29,6 @@ const userSchema = new Schema(
   { timestamps: true }
 );
 
-const User = mongoose.models.User || mongoose.model("User", userSchema);
+const User = mongoose.models.User || mongoose.model<IUser>("User", userSchema);
 
 export default User;

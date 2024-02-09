@@ -15,6 +15,18 @@ import {
 import useUserStore from "@/lib/store/store";
 import { redirect } from "next/navigation";
 
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+
 interface HeaderProps {
   title: string;
   subtile: string;
@@ -26,8 +38,9 @@ const Header = ({ title, subtile, children }: HeaderProps) => {
 
   if (status === "unauthenticated") {
     redirect("/auth");
-  } else {
+  } else if (status === "authenticated") {
     console.log("Session: ", session);
+  } else {
   }
 
   return (

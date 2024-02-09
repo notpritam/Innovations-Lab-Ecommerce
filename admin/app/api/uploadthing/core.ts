@@ -1,5 +1,6 @@
 import { authorize } from "@/lib/db/mongodb";
 import { getServerSession } from "next-auth";
+import User from "@/lib/models/User_Modal";
 import { getSession, useSession } from "next-auth/react";
 import { createUploadthing, type FileRouter } from "uploadthing/next";
 import { UploadThingError } from "uploadthing/server";

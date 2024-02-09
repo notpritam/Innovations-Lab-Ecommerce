@@ -1,4 +1,3 @@
-"use client";
 import { useState } from "react";
 import Header from "../Header";
 import { Button } from "../ui/button";
@@ -6,47 +5,28 @@ import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { UploadButton } from "@/utils/uploadthing";
 import Image from "next/image";
-import { addCategoryDB } from "@/lib/db/mongodb";
+import { connect } from "@/lib/db/mongodb";
 import { toast } from "../ui/use-toast";
-
-interface Category {
-  name: string;
-  description: string;
-  image: string;
-}
+import { ICategory } from "@/lib/models/Category_Modal";
+import connectDB from "@/lib/db/connect-db";
 
 const Categories = () => {
   const [addCategory, setAddCategory] = useState(false);
 
-  const [category, setCategory] = useState<Category>({
+  const [category, setCategory] = useState<ICategory>({
     name: "",
     description: "",
     image: "",
   });
 
   const handleAddCategory = async () => {
-    if (!category.name || !category.description || !category.image) {
-      try {
-        const res = await addCategoryDB(category);
-        console.log("Category Added: ", res);
-        if (res) {
-          toast({
-            title: "Category Added",
-            description: "Category has been added successfully.",
-          });
-        }
-        setAddCategory(false);
-      } catch (e) {
-        console.log(e);
-        toast({
-          title: "Error",
-          description: "Something went wrong.",
-        });
-      }
-    } else {
+    try {
+      const db = await connect();
+    } catch (e) {
+      console.log(e);
       toast({
         title: "Error",
-        description: "Please fill all the fields.",
+        description: "Something went wrong.",
       });
     }
   };

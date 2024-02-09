@@ -1,12 +1,13 @@
 import mongoose from "mongoose";
 import User from "../models/User_Modal";
-import Category from "../models/Category_Modal";
+import Category, { ICategory } from "../models/Category_Modal";
 
 //mine ui imports
 
 let isConnected = false;
 
 export const connect = async () => {
+  console.log("Connect");
   try {
     if (isConnected) {
       console.log("Already connected to MongoDB");
@@ -16,12 +17,14 @@ export const connect = async () => {
       isConnected = true;
       console.log("Connected to MongoDB");
     }
-  } catch (e) {}
+  } catch (e) {
+    console.log(e);
+  }
 };
 
 export const checkUser = async (email: string) => {
   try {
-    const db = await connect();
+    await connect();
     const user = await User.findOne({ email });
 
     // console.log("User", user);
@@ -44,11 +47,8 @@ export const checkUser = async (email: string) => {
 export const authorize = async (email: string) => {
   console.log("Authorize", email);
   try {
-    if (!isConnected) {
-      await connect();
-    } else {
-      console.log("Already connected to MongoDB");
-    }
+    await connect();
+
     const user = await User.findOne({
       email,
     });
@@ -65,18 +65,20 @@ interface Category {
   image: string;
 }
 
-export const addCategoryDB = async (category: any) => {
-  try {
-    if (!isConnected) {
-      await connect();
-    } else {
-      console.log("Already connected to MongoDB");
-    }
-    const newCategory = new Category(category);
-    const categoryData = await newCategory.save();
-    return categoryData;
-  } catch (e) {
-    console.log(e);
-    return null;
-  }
-};
+// export const addCategoryDB = async (category: ICategory) => {
+//   try {
+//     // if (!isConnected) {
+//     //   // await connect();
+//     // } else {
+//     //   console.log("Already connected to MongoDB");
+//     // }
+
+//     // const newCategory = new Category(category);
+//     // const categoryData = await newCategory.save();
+//     // return categoryData;
+//     return "hello";
+//   } catch (e) {
+//     console.log(e);
+//     // return null;
+//   }
+// };

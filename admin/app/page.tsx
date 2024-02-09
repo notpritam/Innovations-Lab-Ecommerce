@@ -26,6 +26,7 @@ interface NavItem {
 }
 
 export default function Home() {
+  const { status } = useSession();
   const searchParmas = useSearchParams();
 
   const seletectTab = searchParmas.get("tab") || "dashboard";
@@ -80,6 +81,8 @@ export default function Home() {
       icon: <Users />,
     },
   ];
+
+  if (status === "loading") return <div>Loading</div>;
 
   return (
     <main className="flex h-screen w-screen ">

@@ -1,5 +1,10 @@
 import mongoose from "mongoose";
 import { Schema } from "mongoose";
+export interface ICategory {
+  name: string;
+  description: string;
+  image: string;
+}
 
 const categorySchema = new Schema({
   _id: mongoose.Schema.Types.ObjectId,
@@ -9,6 +14,7 @@ const categorySchema = new Schema({
 });
 
 const Category =
-  mongoose.models.Category || mongoose.model("Category", categorySchema);
+  mongoose.models.Category ||
+  mongoose.model<ICategory>("Category", categorySchema);
 
 export default Category;
