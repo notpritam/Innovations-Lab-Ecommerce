@@ -19,15 +19,6 @@ function Page() {
 
   const handleSignIn = async () => {
     const result = await signIn("google");
-
-    if (!result.error) {
-      router.push("/");
-    } else {
-      toast({
-        title: "Login Failed",
-        description: result?.error,
-      });
-    }
   };
 
   return (

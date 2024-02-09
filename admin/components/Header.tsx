@@ -15,50 +15,24 @@ import {
 import useUserStore from "@/lib/store/store";
 import { redirect } from "next/navigation";
 
-const Header = () => {
+interface HeaderProps {
+  title: string;
+  subtile: string;
+}
+
+const Header = ({ title, subtile }: HeaderProps) => {
   const { status, data: session } = useSession();
 
   if (status === "unauthenticated") {
     redirect("/auth");
   }
 
-  const { cart } = useUserStore();
-
   return (
-    <header className="flex justify-between w-full p-4">
-      <h1 className="text-blue-600 font-[2rem] tracking-wider">
-        Innovations Lab
+    <header className="flex flex-col gap-2">
+      <h1 className="text-white text-[2rem] font-bold tracking-wider">
+        {title}
       </h1>
-      <div className="flex gap-8">
-        <Button>
-          <ShoppingBagIcon /> {cart.length > 0 ? `(${cart.length})` : "0"}
-        </Button>
-
-        {status === "authenticated" ? (
-          <>
-            <DropdownMenu>
-              <DropdownMenuTrigger>
-                <Avatar>
-                  <AvatarImage src="https://github.com/shadcn.png" />
-                  <AvatarFallback>CN</AvatarFallback>
-                </Avatar>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent>
-                <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem>Profile</DropdownMenuItem>
-                <DropdownMenuItem>Billing</DropdownMenuItem>
-                <DropdownMenuItem>Team</DropdownMenuItem>
-                <DropdownMenuItem onClick={() => signOut()}>
-                  Logout
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </>
-        ) : (
-          <Button onClick={() => signIn("google")}>Login</Button>
-        )}
-      </div>
+      <p className="text-white opacity-25">{subtile}</p>
     </header>
   );
 };
