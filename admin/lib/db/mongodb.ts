@@ -43,3 +43,21 @@ export const checkUser = async (email: string) => {
     return false;
   }
 };
+
+export const authorize = async (email: string) => {
+  console.log("Authorize", email);
+  try {
+    if (!isConnected) {
+      await connect();
+    } else {
+      console.log("Already connected to MongoDB");
+    }
+    const user = await User.findOne({
+      email,
+    });
+    return { _id: user._id, email: user.email };
+  } catch (e) {
+    console.log(e);
+    return null;
+  }
+};

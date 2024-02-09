@@ -19,6 +19,8 @@ import { useSearchParams } from "next/navigation";
 import CustomCard from "@/components/CustomCard";
 import Dashboard from "@/components/Pages/Dashboard";
 import Orders from "@/components/Pages/Orders";
+import AddProduct from "@/components/Pages/Add_Product";
+import Categories from "@/components/Pages/Categories";
 
 interface NavItem {
   label: string;
@@ -35,6 +37,12 @@ export default function Home() {
   const seletectTab = searchParmas.get("tab") || "dashboard";
 
   const navList: NavItem[] = [
+    {
+      label: "Add Product",
+      value: "add-product",
+      icon: <ShoppingBasket />,
+      content: <AddProduct />,
+    },
     {
       label: "Dashboard",
       value: "dashboard",
@@ -62,7 +70,7 @@ export default function Home() {
     {
       label: "Logout",
       value: "logout",
-      content: <Dashboard />,
+      content: <Button onClick={() => signOut()}>Logout</Button>,
       icon: <LogOut />,
     },
     {
@@ -74,7 +82,7 @@ export default function Home() {
     {
       label: "Categories",
       value: "categories",
-      content: <Dashboard />,
+      content: <Categories />,
       icon: <Users />,
     },
   ];

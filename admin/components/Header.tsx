@@ -18,9 +18,10 @@ import { redirect } from "next/navigation";
 interface HeaderProps {
   title: string;
   subtile: string;
+  children?: React.ReactNode;
 }
 
-const Header = ({ title, subtile }: HeaderProps) => {
+const Header = ({ title, subtile, children }: HeaderProps) => {
   const { status, data: session } = useSession();
 
   if (status === "unauthenticated") {
@@ -28,11 +29,14 @@ const Header = ({ title, subtile }: HeaderProps) => {
   }
 
   return (
-    <header className="flex flex-col gap-2">
-      <h1 className="text-white text-[2rem] font-bold tracking-wider">
-        {title}
-      </h1>
-      <p className="text-white opacity-25">{subtile}</p>
+    <header className="flex items-center justify-between w-full">
+      <div className="flex flex-col gap-2">
+        <h1 className="text-white text-[2rem] font-bold tracking-wider">
+          {title}
+        </h1>
+        <p className="text-white opacity-25">{subtile}</p>
+      </div>
+      {children}
     </header>
   );
 };
