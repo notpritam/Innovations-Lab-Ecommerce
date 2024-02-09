@@ -1,5 +1,4 @@
 import { authorize } from "@/lib/db/mongodb";
-import User from "@/lib/models/User_Modal";
 import { getServerSession } from "next-auth";
 import { getSession, useSession } from "next-auth/react";
 import { createUploadthing, type FileRouter } from "uploadthing/next";
@@ -33,7 +32,7 @@ export const ourFileRouter = {
       console.log("file url", file.url);
 
       // !!! Whatever is returned here is sent to the clientside `onClientUploadComplete` callback
-      return { uploadedBy: metadata.userId };
+      return { uploadedBy: metadata.userId, url: file.url };
     }),
   categoryImageUploader: f({ image: { maxFileSize: "16MB" } })
     // Set permissions and file types for this FileRoute
@@ -57,7 +56,7 @@ export const ourFileRouter = {
       console.log("file url", file.url);
 
       // !!! Whatever is returned here is sent to the clientside `onClientUploadComplete` callback
-      return { uploadedBy: metadata.userId };
+      return { uploadedBy: metadata.userId, url: file.url };
     }),
 } satisfies FileRouter;
 

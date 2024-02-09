@@ -1,11 +1,12 @@
 import mongoose from "mongoose";
 import User from "../models/User_Modal";
+import Category from "../models/Category_Modal";
 
 //mine ui imports
 
 let isConnected = false;
 
-const connect = async () => {
+export const connect = async () => {
   try {
     if (isConnected) {
       console.log("Already connected to MongoDB");
@@ -20,14 +21,10 @@ const connect = async () => {
 
 export const checkUser = async (email: string) => {
   try {
-    if (!isConnected) {
-      await connect();
-    } else {
-      console.log("Already connected to MongoDB");
-    }
+    const db = await connect();
     const user = await User.findOne({ email });
 
-    console.log("User", user);
+    // console.log("User", user);
 
     if (user) {
       if (user.role === "admin") {
@@ -56,6 +53,28 @@ export const authorize = async (email: string) => {
       email,
     });
     return { _id: user._id, email: user.email };
+  } catch (e) {
+    console.log(e);
+    return null;
+  }
+};
+
+interface Category {
+  name: string;
+  description: string;
+  image: string;
+}
+
+export const addCategoryDB = async (category: any) => {
+  try {
+    if (!isConnected) {
+      await connect();
+    } else {
+      console.log("Already connected to MongoDB");
+    }
+    const newCategory = new Category(category);
+    const categoryData = await newCategory.save();
+    return categoryData;
   } catch (e) {
     console.log(e);
     return null;

@@ -1,13 +1,10 @@
 "use client";
-import { redirect } from "next/navigation";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { useSession, signIn, signOut } from "next-auth/react";
-import Header from "@/components/Header";
+import { useSession, signOut } from "next-auth/react";
 import {
   ShoppingBag,
   Users,
-  LayoutDashboard,
   Settings,
   LogOut,
   BarChart4,
@@ -16,7 +13,6 @@ import {
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useSearchParams } from "next/navigation";
-import CustomCard from "@/components/CustomCard";
 import Dashboard from "@/components/Pages/Dashboard";
 import Orders from "@/components/Pages/Orders";
 import AddProduct from "@/components/Pages/Add_Product";
@@ -30,8 +26,6 @@ interface NavItem {
 }
 
 export default function Home() {
-  const { status } = useSession();
-
   const searchParmas = useSearchParams();
 
   const seletectTab = searchParmas.get("tab") || "dashboard";

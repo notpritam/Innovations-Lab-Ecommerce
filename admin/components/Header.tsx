@@ -26,6 +26,8 @@ const Header = ({ title, subtile, children }: HeaderProps) => {
 
   if (status === "unauthenticated") {
     redirect("/auth");
+  } else {
+    console.log("Session: ", session);
   }
 
   return (

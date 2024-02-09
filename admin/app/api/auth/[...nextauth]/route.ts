@@ -1,11 +1,9 @@
-import { checkUser } from "@/lib/db/mongodb";
+import { checkUser, connect } from "@/lib/db/mongodb";
 import { NextAuthOptions } from "next-auth";
 
 import NextAuth from "next-auth/next";
 
 import GoogleProvider from "next-auth/providers/google";
-
-// import { prisma } from "@/lib/prisma";
 
 const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID!;
 const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET!;
@@ -32,6 +30,7 @@ const authOptions: NextAuthOptions = {
     async signIn({ account, profile }) {
       console.log("signIn", account, profile);
       const email = profile?.email || "";
+      await connect();
       const status = await checkUser(email);
 
       if (!status) {
