@@ -65,20 +65,14 @@ interface Category {
   image: string;
 }
 
-// export const addCategoryDB = async (category: ICategory) => {
-//   try {
-//     // if (!isConnected) {
-//     //   // await connect();
-//     // } else {
-//     //   console.log("Already connected to MongoDB");
-//     // }
-
-//     // const newCategory = new Category(category);
-//     // const categoryData = await newCategory.save();
-//     // return categoryData;
-//     return "hello";
-//   } catch (e) {
-//     console.log(e);
-//     // return null;
-//   }
-// };
+export const addCategoryDB = async (category: ICategory) => {
+  try {
+    // await connect();
+    // const newCategory = new Category(category);
+    // const categoryData = await newCategory.save();
+    // return categoryData;
+  } catch (e) {
+    // console.log(e);
+    // return null;
+  }
+};

@@ -1,3 +1,4 @@
+"use client";
 import { useState } from "react";
 import Header from "../Header";
 import { Button } from "../ui/button";
@@ -5,7 +6,7 @@ import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { UploadButton } from "@/utils/uploadthing";
 import Image from "next/image";
-import { connect } from "@/lib/db/mongodb";
+import { addCategoryDB, checkUser, connect } from "@/lib/db/mongodb";
 import { toast } from "../ui/use-toast";
 import { ICategory } from "@/lib/models/Category_Modal";
 import connectDB from "@/lib/db/connect-db";
@@ -21,7 +22,15 @@ const Categories = () => {
 
   const handleAddCategory = async () => {
     try {
-      const db = await connect();
+      // const db = await connect();
+      // const res = await addCategoryDB(category);
+      const us = await checkUser("notpritamsharma@gmail.com");
+      if (us) {
+        console.log("User is admin");
+      }
+      // if (res) {
+      //   console.log("Category Added", res);
+      // }
     } catch (e) {
       console.log(e);
       toast({

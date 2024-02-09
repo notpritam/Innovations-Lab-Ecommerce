@@ -1,4 +1,3 @@
-"use client";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { useSession, signOut } from "next-auth/react";
@@ -17,6 +16,7 @@ import Dashboard from "@/components/Pages/Dashboard";
 import Orders from "@/components/Pages/Orders";
 import AddProduct from "@/components/Pages/Add_Product";
 import Categories from "@/components/Pages/Categories";
+import { getServerSession } from "next-auth";
 
 interface NavItem {
   label: string;
@@ -25,11 +25,11 @@ interface NavItem {
   content?: React.ReactNode;
 }
 
-export default function Home() {
-  const { status } = useSession();
-  const searchParmas = useSearchParams();
+export default async function Home() {
+  // const {  } = getServerSession();
+  // const searchParmas = useSearchParams();
 
-  const seletectTab = searchParmas.get("tab") || "dashboard";
+  const seletectTab = "dashboard";
 
   const navList: NavItem[] = [
     {
@@ -65,7 +65,7 @@ export default function Home() {
     {
       label: "Logout",
       value: "logout",
-      content: <Button onClick={() => signOut()}>Logout</Button>,
+      content: <>{/* <Button onClick={() => signOut()}>Logout</Button> */}</>,
       icon: <LogOut />,
     },
     {
@@ -82,7 +82,7 @@ export default function Home() {
     },
   ];
 
-  if (status === "loading") return <div>Loading</div>;
+  // if (status === "loading") return <div>Loading</div>;
 
   return (
     <main className="flex h-screen w-screen ">
