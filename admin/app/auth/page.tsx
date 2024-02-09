@@ -7,8 +7,13 @@ import { useSearchParams, redirect } from "next/navigation";
 
 function Page() {
   const { status } = useSession();
+  const { toast } = useToast();
 
   if (status === "authenticated") {
+    toast({
+      title: "Logged In",
+      description: "You are logged in successfully.",
+    });
     redirect("/");
   }
 
