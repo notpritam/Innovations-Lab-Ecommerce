@@ -1,6 +1,5 @@
+"use server";
 import mongoose from "mongoose";
-import User from "../models/User_Modal";
-import Category, { ICategory } from "../models/Category_Modal";
 
 //mine ui imports
 
@@ -19,60 +18,5 @@ export const connect = async () => {
     }
   } catch (e) {
     console.log(e);
-  }
-};
-
-export const checkUser = async (email: string) => {
-  try {
-    await connect();
-    const user = await User.findOne({ email });
-
-    // console.log("User", user);
-
-    if (user) {
-      if (user.role === "admin") {
-        return true;
-      } else {
-        return false;
-      }
-    } else {
-      return false;
-    }
-  } catch (e) {
-    console.log(e);
-    return false;
-  }
-};
-
-export const authorize = async (email: string) => {
-  console.log("Authorize", email);
-  try {
-    await connect();
-
-    const user = await User.findOne({
-      email,
-    });
-    return { _id: user._id, email: user.email };
-  } catch (e) {
-    console.log(e);
-    return null;
-  }
-};
-
-interface Category {
-  name: string;
-  description: string;
-  image: string;
-}
-
-export const addCategoryDB = async (category: ICategory) => {
-  try {
-    // await connect();
-    // const newCategory = new Category(category);
-    // const categoryData = await newCategory.save();
-    // return categoryData;
-  } catch (e) {
-    // console.log(e);
-    // return null;
   }
 };

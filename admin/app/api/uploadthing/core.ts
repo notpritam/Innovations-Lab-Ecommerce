@@ -1,9 +1,9 @@
-import { authorize } from "@/lib/db/mongodb";
 import { getServerSession } from "next-auth";
 import User from "@/lib/models/User_Modal";
 import { getSession, useSession } from "next-auth/react";
 import { createUploadthing, type FileRouter } from "uploadthing/next";
 import { UploadThingError } from "uploadthing/server";
+import { authorizeDB } from "@/lib/actions/db.action";
 
 const f = createUploadthing();
 
@@ -18,7 +18,7 @@ export const ourFileRouter = {
       // This code runs on your server before upload
       const session = await getServerSession();
 
-      const user = await authorize(session?.user?.email as string);
+      const user = await authorizeDB(session?.user?.email as string);
 
       // If you throw, the user will not be able to upload
       if (!user) throw new UploadThingError("Unauthorized");
@@ -42,7 +42,7 @@ export const ourFileRouter = {
 
       const session = await getServerSession();
 
-      const user = await authorize(session?.user?.email as string);
+      const user = await authorizeDB(session?.user?.email as string);
 
       // If you throw, the user will not be able to upload
       if (!user) throw new UploadThingError("Unauthorized");

@@ -6,12 +6,14 @@ export interface ICategory {
   image: string;
 }
 
-const categorySchema = new Schema({
-  _id: mongoose.Schema.Types.ObjectId,
-  name: { type: String, required: true },
-  description: { type: String, required: true },
-  image: { type: String, required: true },
-});
+const categorySchema = new Schema(
+  {
+    name: { type: String, required: true },
+    description: { type: String, required: true },
+    image: { type: String, required: true },
+  },
+  { timestamps: true }
+);
 
 const Category =
   mongoose.models.Category ||

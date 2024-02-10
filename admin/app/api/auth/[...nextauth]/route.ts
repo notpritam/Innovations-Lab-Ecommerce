@@ -1,4 +1,5 @@
-import { checkUser, connect } from "@/lib/db/mongodb";
+import { checkUserDB } from "@/lib/actions/db.action";
+import { connect } from "@/lib/db/mongodb";
 import { NextAuthOptions } from "next-auth";
 
 import NextAuth from "next-auth/next";
@@ -31,7 +32,7 @@ const authOptions: NextAuthOptions = {
       console.log("signIn", account, profile);
       const email = profile?.email || "";
       await connect();
-      const status = await checkUser(email);
+      const status = await checkUserDB(email);
 
       if (!status) {
         console.log("You do not have permission to sign in.");

@@ -62,12 +62,7 @@ export default async function Home() {
       content: <Dashboard />,
       icon: <Settings />,
     },
-    {
-      label: "Logout",
-      value: "logout",
-      content: <>{/* <Button onClick={() => signOut()}>Logout</Button> */}</>,
-      icon: <LogOut />,
-    },
+
     {
       label: "Products",
       value: "products",
@@ -79,6 +74,12 @@ export default async function Home() {
       value: "categories",
       content: <Categories />,
       icon: <Users />,
+    },
+    {
+      label: "Logout",
+      value: "logout",
+      content: <>{/* <Button onClick={() => signOut()}>Logout</Button> */}</>,
+      icon: <LogOut />,
     },
   ];
 
