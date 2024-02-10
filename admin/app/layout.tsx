@@ -4,10 +4,14 @@ import "./globals.css";
 import SessionWrapper from "@/components/SessionWrapper";
 import { cn } from "@/lib/utils";
 
+import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
+
 const inter = Inter({ subsets: ["latin"] });
 
 //Mine
 import { Toaster } from "@/components/ui/toaster";
+import { ourFileRouter } from "./api/uploadthing/core";
+import { extractRouterConfig } from "uploadthing/server";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -28,6 +32,7 @@ export default function RootLayout({
         )}
       >
         <SessionWrapper>
+          <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
           {children}
           <Toaster />
         </SessionWrapper>

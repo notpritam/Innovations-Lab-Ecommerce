@@ -48,7 +48,20 @@ const AddProduct = () => {
 
         <div className="flex flex-col gap-2">
           <Label>Upload Images</Label>
-          <UploadDropzone endpoint="productImages" />
+          <UploadDropzone
+            endpoint="productImageUploader"
+            onClientUploadComplete={(res) => {
+              // Do something with the response
+              const data = res;
+              console.log("Files: ", res);
+              // se({ ...category, image: data.url });
+              alert("Upload Completed");
+            }}
+            onUploadError={(error: Error) => {
+              // Do something with the error.
+              alert(`ERROR! ${error.message}`);
+            }}
+          />
         </div>
       </div>
     </div>
