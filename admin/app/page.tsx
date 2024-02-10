@@ -15,7 +15,7 @@ import TabsPage from "@/components/Tabs";
 export default async function Home() {
   return (
     <main className="flex h-screen w-screen ">
-      <TabsPage />
+      <TabsPage currentTab="dashboard" />
     </main>
   );
 }

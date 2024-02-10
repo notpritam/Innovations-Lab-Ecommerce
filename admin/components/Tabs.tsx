@@ -25,7 +25,7 @@ interface NavItemProps {
   content?: React.ReactNode;
 }
 
-const TabsPage = async () => {
+const TabsPage = async ({ currentTab }: { currentTab: string }) => {
   const navList: NavItemProps[] = [
     {
       label: "Add Product",
@@ -78,7 +78,7 @@ const TabsPage = async () => {
     },
   ];
   return (
-    <Tabs defaultValue={"dashboard"} className="w-full flex">
+    <Tabs defaultValue={currentTab} className="w-full flex">
       <TabsList className="px-4 h-full p-[0] rounded-[0px] flex items-start justify-start flex-col">
         <div className="flex items-center h-[100px] w-full justify-center">
           <Image src="/innovation.png" alt="logo" width={64} height={64} />

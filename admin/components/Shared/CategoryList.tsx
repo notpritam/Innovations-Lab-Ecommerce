@@ -31,18 +31,22 @@ const CategoryList = () => {
     getCategories();
   }, []);
   return (
-    <div>
+    <div className="flex gap-4 mt-8">
       {categories?.map((category) => (
-        <div key={category._id} className="flex gap-4 items-center">
+        <div
+          key={category._id}
+          className="flex gap-2 p-4 bg-secondary shadow-md border-[2px] rounded-md border-secondary flex-col "
+        >
           <Image
             src={category.image}
             alt={category.name}
             width={100}
             height={100}
+            className="rounded-full h-[100px] w-[100px] object-cover"
           />
-          <div>
-            <h4>{category.name}</h4>
-            <p>{category.description}</p>
+          <div className="flex justify-start flex-col">
+            <h4 className="font-semibold text-[1.25rem]">{category.name}</h4>
+            <p className="text-white opacity-40">{category.description}</p>
           </div>
         </div>
       ))}

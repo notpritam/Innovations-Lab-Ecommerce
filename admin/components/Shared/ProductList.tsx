@@ -38,6 +38,7 @@ import {
 import Header from "../Header";
 import { redirect } from "next/navigation";
 import Link from "next/link";
+import { Label } from "../ui/label";
 
 const data: Product[] = [
   {
@@ -146,7 +147,37 @@ export const columns: ColumnDef<Product>[] = [
       );
     },
     cell: ({ row }) => (
-      <div className="lowercase">{row.getValue("category")}</div>
+      <div className="capitalize">{row.getValue("category")}</div>
+    ),
+  },
+  {
+    accessorKey: "tags",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Tags
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
+    cell: ({ row }) => (
+      <div className="flex gap-2 flex-nowrap overflow-hidden items-center">
+        {(row.getValue("tags") as string[]).map((item: string, i: number) => {
+          return (
+            i < 3 && (
+              <div
+                key={i}
+                className="text-sm bg-secondary px-2 py-1 rounded-md"
+              >
+                {item}
+              </div>
+            )
+          );
+        })}
+      </div>
     ),
   },
   {
@@ -231,10 +262,10 @@ export default function ProductList() {
 
       <div className="flex items-center py-4">
         <Input
-          placeholder="Filter emails..."
-          value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
+          placeholder="Filter Prouducts..."
+          value={(table.getColumn("title")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
-            table.getColumn("email")?.setFilterValue(event.target.value)
+            table.getColumn("title")?.setFilterValue(event.target.value)
           }
           className="max-w-sm"
         />
