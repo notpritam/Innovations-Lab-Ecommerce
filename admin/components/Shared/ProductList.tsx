@@ -39,36 +39,47 @@ import Header from "../Header";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 
-const data: Payment[] = [
+const data: Product[] = [
   {
-    id: "m5gr84i9",
-    amount: 316,
-    status: "success",
-    email: "ken99@yahoo.com",
+    id: "1",
+    title: "Blue T-shirt",
+    price: 29.99,
+    images: [
+      "https://tailwindui.com/img/ecommerce-images/product-page-04-detail-product-shot-01.jpg?auto=webp&fit=clip&h=256&w=256",
+    ],
+    description:
+      "The classic blue t-shirt that everyone loves. Our classic blue t-shirt is made from heavyweight, preshrunk, 100% cotton and features a double needle bottom hem and sleeves for extra durability.",
+    category: "clothing",
+    tags: ["clothing", "t-shirt", "blue"],
+    createdAt: "2021-06-01T12:34:56Z",
+    updatedAt: "2021-06-01T12:34:56Z",
   },
   {
-    id: "3u1reuv4",
-    amount: 242,
-    status: "success",
-    email: "Abe45@gmail.com",
+    id: "2",
+    title: "Black T-shirt",
+    price: 29.99,
+    images: [
+      "https://tailwindui.com/img/ecommerce-images/product-page-04-detail-product-shot-01.jpg?auto=webp&fit=clip&h=256&w=256",
+    ],
+    description:
+      "The classic black t-shirt that everyone loves. Our classic black t-shirt is made from heavyweight, preshrunk, 100% cotton and features a double needle bottom hem and sleeves for extra durability.",
+    category: "clothing",
+    tags: ["clothing", "t-shirt", "black"],
+    createdAt: "2021-06-01T12:34:56Z",
+    updatedAt: "2021-06-01T12:34:56Z",
   },
   {
-    id: "derv1ws0",
-    amount: 837,
-    status: "processing",
-    email: "Monserrat44@gmail.com",
-  },
-  {
-    id: "5kma53ae",
-    amount: 874,
-    status: "success",
-    email: "Silas22@gmail.com",
-  },
-  {
-    id: "bhqecj4p",
-    amount: 721,
-    status: "failed",
-    email: "carmella@hotmail.com",
+    id: "3",
+    title: "Red T-shirt",
+    price: 29.99,
+    images: [
+      "https://tailwindui.com/img/ecommerce-images/product-page-04-detail-product-shot-01.jpg?auto=webp&fit=clip&h=256&w=256",
+    ],
+    description:
+      "The classic red t-shirt that everyone loves. Our classic red t-shirt is made from heavyweight, preshrunk, 100% cotton and features a double needle bottom hem and sleeves for extra durability.",
+    category: "clothing",
+    tags: ["clothing", "t-shirt", "red"],
+    createdAt: "2021-06-01T12:34:56Z",
   },
 ];
 
@@ -79,7 +90,19 @@ export type Payment = {
   email: string;
 };
 
-export const columns: ColumnDef<Payment>[] = [
+export type Product = {
+  id: string;
+  title: string;
+  price: number;
+  images: string[];
+  description: string;
+  category: string;
+  tags: string[];
+  createdAt: string;
+  updatedAt?: string;
+};
+
+export const columns: ColumnDef<Product>[] = [
   {
     id: "select",
     header: ({ table }) => (
@@ -103,37 +126,39 @@ export const columns: ColumnDef<Payment>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: "status",
-    header: "Status",
+    accessorKey: "title",
+    header: "Title",
     cell: ({ row }) => (
-      <div className="capitalize">{row.getValue("status")}</div>
+      <div className="capitalize">{row.getValue("title")}</div>
     ),
   },
   {
-    accessorKey: "email",
+    accessorKey: "category",
     header: ({ column }) => {
       return (
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Email
+          Category
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       );
     },
-    cell: ({ row }) => <div className="lowercase">{row.getValue("email")}</div>,
+    cell: ({ row }) => (
+      <div className="lowercase">{row.getValue("category")}</div>
+    ),
   },
   {
-    accessorKey: "amount",
-    header: () => <div className="text-right">Amount</div>,
+    accessorKey: "price",
+    header: () => <div className="text-right">Price</div>,
     cell: ({ row }) => {
-      const amount = parseFloat(row.getValue("amount"));
+      const amount = parseFloat(row.getValue("price"));
 
       // Format the amount as a dollar amount
       const formatted = new Intl.NumberFormat("en-US", {
         style: "currency",
-        currency: "USD",
+        currency: "INR",
       }).format(amount);
 
       return <div className="text-right font-medium">{formatted}</div>;
@@ -143,7 +168,7 @@ export const columns: ColumnDef<Payment>[] = [
     id: "actions",
     enableHiding: false,
     cell: ({ row }) => {
-      const payment = row.original;
+      const proudct = row.original;
 
       return (
         <DropdownMenu>
@@ -156,9 +181,9 @@ export const columns: ColumnDef<Payment>[] = [
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(payment.id)}
+              onClick={() => navigator.clipboard.writeText(proudct.id)}
             >
-              Copy payment ID
+              Copy product ID
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem>View customer</DropdownMenuItem>
