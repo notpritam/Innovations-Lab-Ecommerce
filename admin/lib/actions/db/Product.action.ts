@@ -6,11 +6,25 @@ import User from "@/lib/models/User_Modal";
 import mongoose from "mongoose";
 import { getServerSession } from "next-auth";
 
-export const getProducts = async () => {
+export const getProductsDB = async () => {
   try {
     await connect();
-    const products = await Product.find();
-    return JSON.stringify(products) as any;
+    const products = await Product.find().populate("category").exec();
+
+    const prouductsData = products.map((product) => {
+      return {
+        id: product._id.toString(),
+        title: product.title,
+        price: product.price,
+        images: product.images,
+        description: product.description,
+        category: product.category.name,
+        tags: product.tags,
+        createdAt: product.createdAt.toString(),
+        updatedAt: product.updatedAt?.toString(),
+      };
+    });
+    return JSON.stringify(prouductsData) as any;
   } catch (e) {
     console.log(e);
     return null;

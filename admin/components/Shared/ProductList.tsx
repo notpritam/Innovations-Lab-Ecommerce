@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { useEffect } from "react";
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -39,8 +40,10 @@ import Header from "../Header";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import { Label } from "../ui/label";
+import { getProductsDB } from "@/lib/actions/db/Product.action";
+import { toast } from "../ui/use-toast";
 
-const data: Product[] = [
+const data: ProductList[] = [
   {
     id: "1",
     title: "Blue T-shirt",
@@ -91,7 +94,7 @@ export type Payment = {
   email: string;
 };
 
-export type Product = {
+export type ProductList = {
   id: string;
   title: string;
   price: number;
@@ -103,7 +106,7 @@ export type Product = {
   updatedAt?: string;
 };
 
-export const columns: ColumnDef<Product>[] = [
+export const columns: ColumnDef<ProductList>[] = [
   {
     id: "select",
     header: ({ table }) => (
@@ -228,12 +231,34 @@ export const columns: ColumnDef<Product>[] = [
 
 export default function ProductList() {
   const [sorting, setSorting] = React.useState<SortingState>([]);
+  const [products, setProducts] = React.useState<ProductList[]>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
   );
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
+
+  const getProduct = async () => {
+    try {
+      const res = await getProductsDB();
+      if (res) {
+        console.log("Products", res);
+        setProducts(res);
+      } else {
+        toast({
+          title: "Error",
+          description: "No Products Found.",
+        });
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  useEffect(() => {
+    getProduct();
+  }, []);
 
   const table = useReactTable({
     data,
