@@ -1,7 +1,10 @@
+"use client";
+import { useSession } from "next-auth/react";
 import CustomCard from "../CustomCard";
 import Header from "../Header";
 
 const Dashboard = () => {
+  const { status } = useSession();
   return (
     <>
       <div className="flex flex-col w-full gap-8">

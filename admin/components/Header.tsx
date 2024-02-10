@@ -16,16 +16,13 @@ import useUserStore from "@/lib/store/store";
 import { redirect } from "next/navigation";
 
 import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 interface HeaderProps {
   title: string;
@@ -35,6 +32,25 @@ interface HeaderProps {
 
 const Header = ({ title, subtile, children }: HeaderProps) => {
   const { status, data: session } = useSession();
+
+  if (status === "loading") {
+    return (
+      <Dialog defaultOpen open={true}>
+        {/* <DialogTrigger>Open</DialogTrigger> */}
+
+        <DialogContent>
+          {/* <DialogHeader>
+            <DialogTitle>Are you absolutely sure?</DialogTitle>
+            <DialogDescription>
+              This action cannot be undone. This will permanently delete your
+              account and remove your data from our servers.
+            </DialogDescription>
+          </DialogHeader> */}
+          <span className="text-[4rem]">Loading</span>
+        </DialogContent>
+      </Dialog>
+    );
+  }
 
   if (status === "unauthenticated") {
     redirect("/auth");
