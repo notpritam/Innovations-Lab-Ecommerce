@@ -100,20 +100,27 @@ const ProductForm = () => {
 
       addProductDB(product)
         .then((res) => {
-          if (res) {
-            toast({
-              title: "Success",
-              description: "Product added successfully.",
-            });
-          } else {
-            toast({
-              title: "Error",
-              description: "Something went wrong.",
-            });
-          }
+          toast({
+            title: "Success",
+            description: "Product added successfully.",
+          });
+
+          setAddProduct({
+            title: "",
+            description: "",
+            price: 0,
+            images: [],
+            category: "",
+            tags: [],
+          });
+          setImageList([]);
         })
         .catch((error) => {
-          throw new Error(error);
+          console.log(error);
+          toast({
+            title: "Error",
+            description: "Something went wrong.",
+          });
         });
     } catch (e) {
       console.log(e);
