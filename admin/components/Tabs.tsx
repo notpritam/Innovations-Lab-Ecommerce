@@ -1,7 +1,5 @@
-"use client";
 import React from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 
 //ICons
@@ -27,12 +25,7 @@ interface NavItemProps {
   content?: React.ReactNode;
 }
 
-function TabsPage() {
-  const searchParams = useSearchParams();
-  const getSearchTab = searchParams.get("tab") || "dashboard";
-
-  const [selectedTab, setSelectedTab] = React.useState(getSearchTab);
-
+const TabsPage = async () => {
   const navList: NavItemProps[] = [
     {
       label: "Add Product",
@@ -85,7 +78,7 @@ function TabsPage() {
     },
   ];
   return (
-    <Tabs defaultValue={selectedTab} className="w-full flex">
+    <Tabs defaultValue={"dashboard"} className="w-full flex">
       <TabsList className="px-4 h-full p-[0] rounded-[0px] flex items-start justify-start flex-col">
         <div className="flex items-center h-[100px] w-full justify-center">
           <Image src="/innovation.png" alt="logo" width={64} height={64} />
@@ -95,9 +88,6 @@ function TabsPage() {
             key={item.label}
             className="w-full font-thin rounded-[0px] flex justify-start gap-2 pr-8"
             value={item.value}
-            onClick={() => {
-              setSelectedTab(item.value);
-            }}
           >
             {item.icon}
             {item.label}
@@ -113,6 +103,6 @@ function TabsPage() {
       </div>
     </Tabs>
   );
-}
+};
 
 export default TabsPage;
