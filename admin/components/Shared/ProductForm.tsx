@@ -136,7 +136,7 @@ const ProductForm = () => {
   }, []);
 
   return (
-    <div className="flex gap-4 flex-col mt-8">
+    <div className="flex overflow-y-auto overflow-hidden gap-4 flex-col mt-8">
       <div className="flex items-end gap-8 w-full">
         <div className="flex flex-col gap-2 w-full">
           <Label>Title</Label>
@@ -279,8 +279,8 @@ const ProductForm = () => {
       </div>
 
       <DndContext onDragEnd={handleDragEnd} collisionDetection={closestCorners}>
+        {imageList.length > 0 ? <Label>Images</Label> : null}{" "}
         <div className="flex gap-4">
-          {imageList.length > 0 ? <Label>Images</Label> : null}{" "}
           <SortableContext
             items={imageList}
             strategy={horizontalListSortingStrategy}

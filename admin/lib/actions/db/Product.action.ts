@@ -10,7 +10,7 @@ export const getProducts = async () => {
   try {
     await connect();
     const products = await Product.find();
-    return products;
+    return JSON.stringify(products) as any;
   } catch (e) {
     console.log(e);
     return null;
