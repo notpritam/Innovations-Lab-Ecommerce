@@ -17,17 +17,15 @@ export const getProducts = async () => {
   }
 };
 
-export const addProductDB = async ({ product, email }: any) => {
+export const addProductDB = async (product: any): Promise<IProduct | null> => {
   try {
     await connect();
 
-    // const session = await getServerSession();
+    const session = await getServerSession();
 
-    const user = await User.findOne({ email: email });
+    const user = await User.findOne({ email: session?.user?.email });
+
     const category = await Category.findById(product.category);
-    console.log(user, "this is user");
-
-    console.log(category, "this is category");
 
     const productDetails: IProduct = {
       title: product.title,
@@ -40,13 +38,12 @@ export const addProductDB = async ({ product, email }: any) => {
     };
 
     const newProduct = new Product(productDetails);
+    await newProduct.save();
+    console.log("Product saved successfully:", newProduct);
 
-    await newProduct.save().then((product: any) => {
-      console.log("Product saved successfully:", product);
-      return product;
-    });
+    return JSON.stringify(newProduct) as any;
   } catch (e) {
-    console.log(e, "this is error in addProductDB");
+    console.error("Error in addProductDB:", e);
     return null;
   }
 };

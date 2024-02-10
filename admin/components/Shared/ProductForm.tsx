@@ -44,10 +44,6 @@ export interface ImageItemProps {
   id: string;
 }
 
-interface ProductFormProps {
-  handleAddProduct: (product: AddProductProps) => void;
-}
-
 const ProductForm = () => {
   const [addProduct, setAddProduct] = useState<AddProductProps>({
     title: "",
@@ -96,74 +92,29 @@ const ProductForm = () => {
   };
 
   const handleAddProduct = async () => {
-    if (
-      addProduct.title === "" ||
-      addProduct.description === "" ||
-      addProduct.price === 0 ||
-      addProduct.category === "" ||
-      addProduct.tags.length === 0
-    ) {
-      if (addProduct.tags.length === 0) {
-        toast({
-          title: "Error",
-          description: "Please add tags.",
-        });
-      }
-
-      if (addProduct.category === "") {
-        toast({
-          title: "Error",
-          description: "Please select a category.",
-        });
-      }
-
-      if (addProduct.price === 0) {
-        toast({
-          title: "Error",
-          description: "Please add a price.",
-        });
-      }
-
-      if (addProduct.description === "") {
-        toast({
-          title: "Error",
-          description: "Please add a description.",
-        });
-      }
-
-      if (addProduct.title === "") {
-        toast({
-          title: "Error",
-          description: "Please add a title.",
-        });
-      }
-
-      return;
-    }
     try {
       const product = {
         ...addProduct,
         images: imageList.map((image) => image.src),
       };
 
-      const res = await addProductDB({
-        product,
-        email: "notpritamsharma@gmail.com",
-      });
-
-      if (res) {
-        console.log("Product added successfully", res);
-        toast({
-          title: "Success",
-          description: "Product added successfully.",
+      addProductDB(product)
+        .then((res) => {
+          if (res) {
+            toast({
+              title: "Success",
+              description: "Product added successfully.",
+            });
+          } else {
+            toast({
+              title: "Error",
+              description: "Something went wrong.",
+            });
+          }
+        })
+        .catch((error) => {
+          throw new Error(error);
         });
-        console.log("Product added successfully", res);
-      } else {
-        toast({
-          title: "Error",
-          description: "Something went wrong.",
-        });
-      }
     } catch (e) {
       console.log(e);
       toast({
