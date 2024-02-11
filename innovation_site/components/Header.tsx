@@ -26,6 +26,7 @@ import {
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import Sidebar from "./Sidebar";
 
 interface HeaderProps {
   className?: string;
@@ -50,18 +51,20 @@ const Header = ({ className }: HeaderProps) => {
         Innovations Lab
       </Link>
       <div className="flex h-full items-center relative gap-8">
-        <div className="relative h-[24px] w-[24px] ">
-          <Image
-            alt="Cart Image"
-            className="h-[24px] w-[24px]"
-            height={16}
-            width={24}
-            src="/icons/cart.svg"
-          />{" "}
-          <span className="absolute top-1/2 left-1/2 text-opacity-25 text-[12px] translate-x-[-50%] translate-y-[-50%]">
-            {cart.length > 0 ? `(${cart.length})` : "0"}
-          </span>
-        </div>
+        <Sidebar>
+          <div className="relative h-[24px] w-[24px] ">
+            <Image
+              alt="Cart Image"
+              className="h-[24px] w-[24px]"
+              height={16}
+              width={24}
+              src="/icons/cart.svg"
+            />{" "}
+            <span className="absolute top-1/2 left-1/2 text-opacity-25 text-[12px] translate-x-[-50%] translate-y-[-50%]">
+              {cart.length > 0 ? `(${cart.length})` : "0"}
+            </span>
+          </div>
+        </Sidebar>
 
         <Menubar className="border-none h-[24px] w-[24px] flex items-center pr-8 ">
           <MenubarMenu>
