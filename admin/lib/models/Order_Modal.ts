@@ -2,14 +2,24 @@ import mongoose from "mongoose";
 
 import { Schema } from "mongoose";
 
-const orderSchema = new Schema({
-  _id: mongoose.Schema.Types.ObjectId,
+const orderItemSchema = new Schema({
   product: { type: mongoose.Schema.Types.ObjectId, ref: "Product" },
   quantity: { type: Number, default: 1 },
+});
+
+const orderSchema = new Schema({
+  items: [orderItemSchema],
   orderBy: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   status: {
     type: String,
-    enum: ["pending", "processing", "success", "failed"],
+    enum: [
+      "pending",
+      "processing",
+      "success",
+      "cancelled",
+      "failed",
+      "delivered",
+    ],
     default: "pending",
   },
 });
