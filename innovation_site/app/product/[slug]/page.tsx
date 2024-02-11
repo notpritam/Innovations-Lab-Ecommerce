@@ -54,21 +54,23 @@ const Page = async ({ params }: { params: { slug: string } }) => {
       <div className="flex flex-nowrap overflow-hidden overflow-x-scroll">
         {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item) => (
           <>
-            <div className="flex min-w-[250px] flex-col border-t-[1px] border-black ">
-              <div className="min-h-[300px] w-full border-r-[1px] border-black ">
-                <Image
-                  alt="Product Image"
-                  className="h-[300px] w-full object-cover object-center"
-                  height={300}
-                  width={300}
-                  src="/images/logan.jpeg"
-                />
+            <Link href={`/product/title-${item}`}>
+              <div className="flex min-w-[250px] flex-col border-t-[1px] border-black ">
+                <div className="min-h-[300px] w-full border-r-[1px] border-black ">
+                  <Image
+                    alt="Product Image"
+                    className="h-[300px] w-full object-cover object-center"
+                    height={300}
+                    width={300}
+                    src="/images/logan.jpeg"
+                  />
+                </div>
+                <div className="flex flex-col gap-1 p-2 border-r-[1px] border-black">
+                  <span className="text-[1.25rem]">Product Name</span>
+                  <span className="text-sm">₹ 1,234</span>
+                </div>
               </div>
-              <div className="flex flex-col gap-1 p-2 border-r-[1px] border-black">
-                <span className="text-[1.25rem]">Product Name</span>
-                <span className="text-sm">₹ 1,234</span>
-              </div>
-            </div>
+            </Link>
           </>
         ))}
       </div>

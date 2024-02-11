@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { ExternalLink } from "lucide-react";
 // importing necessary functions
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -37,21 +38,23 @@ export default function Home() {
         <div className="grid grid-cols-2">
           {Array.from({ length: 4 }).map((_, index) => (
             <>
-              <div className="flex flex-col border-t-[1px] border-black ">
-                <div className="min-h-[300px] w-full border-r-[1px] border-black ">
-                  <Image
-                    alt="Product Image"
-                    className="h-[300px] w-full"
-                    height={300}
-                    width={300}
-                    src="/images/logan.jpeg"
-                  />
+              <Link key={index} href={`/product/title-${index}`}>
+                <div className="flex flex-col border-t-[1px] border-black ">
+                  <div className="min-h-[300px] w-full border-r-[1px] border-black ">
+                    <Image
+                      alt="Product Image"
+                      className="h-[300px] w-full"
+                      height={300}
+                      width={300}
+                      src="/images/logan.jpeg"
+                    />
+                  </div>
+                  <div className="flex flex-col gap-1 p-2 border-r-[1px] border-black">
+                    <span className="text-[1.25rem]">Product Name</span>
+                    <span className="text-sm">₹ 1,234</span>
+                  </div>
                 </div>
-                <div className="flex flex-col gap-1 p-2 border-r-[1px] border-black">
-                  <span className="text-[1.25rem]">Product Name</span>
-                  <span className="text-sm">₹ 1,234</span>
-                </div>
-              </div>
+              </Link>
             </>
           ))}
         </div>
