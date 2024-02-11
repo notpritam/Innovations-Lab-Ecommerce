@@ -234,7 +234,9 @@ export default function ProductList() {
   return (
     <div className="w-full">
       <Header title="Products" subtile="List of all available products">
-        <Button onClick={() => {}}>Add new product</Button>
+        <Link className="" href={"/add-product"}>
+          <Button>Add new product</Button>
+        </Link>
       </Header>
 
       <div className="flex items-center py-4">
