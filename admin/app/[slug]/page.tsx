@@ -1,4 +1,3 @@
-import TabsPage from "@/components/Tabs";
 import React from "react";
 
 import {
