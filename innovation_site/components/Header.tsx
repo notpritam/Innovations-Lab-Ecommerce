@@ -72,15 +72,35 @@ const Header = ({ className }: HeaderProps) => {
               <AlignJustify color="#000000" strokeWidth={0.75} />
             </MenubarTrigger>
             <MenubarContent className="w-screen bg-white z-[1] items-center flex justify-between flex-col p-0">
-              <div className="p-4 border-b-[1px]  border-black w-full justify-between flex items-center">
-                My Profile
-              </div>
+              {status === "authenticated" ? (
+                <>
+                  <div className="p-4 border-b-[1px]  border-black w-full justify-between flex items-center">
+                    My Profile
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div
+                    onClick={() => signIn("google")}
+                    className="p-4 border-b-[1px]  border-black w-full justify-between flex items-center"
+                  >
+                    Login
+                  </div>
+                </>
+              )}
               <div className="p-4 border-b-[1px]  border-black w-full justify-between flex items-center">
                 Orders
               </div>
-              <div className="p-4 border-b-[1px] border-black w-full justify-between flex items-center">
-                Logout
-              </div>
+              {status === "authenticated" ? (
+                <>
+                  <div
+                    onClick={() => signOut()}
+                    className="p-4 border-b-[1px] border-black w-full justify-between flex items-center"
+                  >
+                    Logout
+                  </div>
+                </>
+              ) : null}
               <div className="p-4 border-b-[1px] border-black w-full justify-between flex items-center">
                 Contact Us
               </div>
