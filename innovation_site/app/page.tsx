@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import { ThreeJS } from "@/components/ThreeJs";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { ExternalLink } from "lucide-react";
 // importing necessary functions
 import Image from "next/image";
@@ -53,6 +54,25 @@ export default function Home() {
               </div>
             </>
           ))}
+        </div>
+      </div>
+
+      <div className="grid grid-cols-2 uppercase w-full">
+        <div className="border-t-[1px] border-black border-r-[1px] items-center justify-center flex p-4">
+          <span className="text-[1.25rem]">Instagram</span>
+        </div>
+        <div className="border-t-[1px] border-black  items-center justify-center flex p-4 ">
+          <span className="text-[1.25rem]">Contact</span>
+        </div>
+
+        <div className="border-[1px] border-black col-span-2 p-4">
+          <Input
+            placeholder="Email"
+            className="border-none text-[1.25rem] p-0 focus:border-none rounded-none"
+          />
+        </div>
+        <div className="border-[1px] border-black border-t-0 items-center justify-center flex p-4 col-span-2">
+          <span className="text-[1.25rem]">Subscribe</span>
         </div>
       </div>
     </>
