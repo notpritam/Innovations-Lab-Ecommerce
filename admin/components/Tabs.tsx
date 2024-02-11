@@ -16,6 +16,7 @@ import Dashboard from "./Tabs/Dashboard";
 import Orders from "./Tabs/Orders";
 import Products from "./Tabs/Products";
 import Categories from "./Tabs/Categories";
+import { getProductsDB } from "@/lib/actions/db/Product.action";
 
 //Interface
 interface NavItemProps {

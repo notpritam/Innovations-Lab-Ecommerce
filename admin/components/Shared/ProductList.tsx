@@ -42,6 +42,7 @@ import Link from "next/link";
 import { Label } from "../ui/label";
 import { getProductsDB } from "@/lib/actions/db/Product.action";
 import { toast } from "../ui/use-toast";
+import { json } from "stream/consumers";
 
 const data: ProductList[] = [
   {
@@ -244,7 +245,8 @@ export default function ProductList() {
       const res = await getProductsDB();
       if (res) {
         console.log("Products", res);
-        setProducts(res);
+        const productList = JSON.parse(res);
+        setProducts(productList);
       } else {
         toast({
           title: "Error",
@@ -261,7 +263,7 @@ export default function ProductList() {
   }, []);
 
   const table = useReactTable({
-    data,
+    data: products,
     columns,
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
@@ -287,7 +289,7 @@ export default function ProductList() {
 
       <div className="flex items-center py-4">
         <Input
-          placeholder="Filter Prouducts..."
+          placeholder="Filter Products..."
           value={(table.getColumn("title")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
             table.getColumn("title")?.setFilterValue(event.target.value)

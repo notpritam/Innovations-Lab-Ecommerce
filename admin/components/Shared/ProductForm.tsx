@@ -92,6 +92,35 @@ const ProductForm = () => {
   };
 
   const handleAddProduct = async () => {
+    if (
+      !addProduct.title ||
+      !addProduct.description ||
+      !addProduct.price ||
+      !addProduct.category
+    ) {
+      if (!addProduct.title) {
+        toast({
+          title: "Error",
+          description: "Title is required.",
+        });
+      } else if (!addProduct.description) {
+        toast({
+          title: "Error",
+          description: "Description is required.",
+        });
+      } else if (!addProduct.price) {
+        toast({
+          title: "Error",
+          description: "Price is required.",
+        });
+      } else if (!addProduct.category) {
+        toast({
+          title: "Error",
+          description: "Category is required.",
+        });
+      }
+      return;
+    }
     try {
       const product = {
         ...addProduct,
