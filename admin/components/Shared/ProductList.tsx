@@ -44,60 +44,10 @@ import { getProductsDB } from "@/lib/actions/db/Product.action";
 import { toast } from "../ui/use-toast";
 import { json } from "stream/consumers";
 
-const data: ProductList[] = [
-  {
-    id: "1",
-    title: "Blue T-shirt",
-    price: 29.99,
-    images: [
-      "https://tailwindui.com/img/ecommerce-images/product-page-04-detail-product-shot-01.jpg?auto=webp&fit=clip&h=256&w=256",
-    ],
-    description:
-      "The classic blue t-shirt that everyone loves. Our classic blue t-shirt is made from heavyweight, preshrunk, 100% cotton and features a double needle bottom hem and sleeves for extra durability.",
-    category: "clothing",
-    tags: ["clothing", "t-shirt", "blue"],
-    createdAt: "2021-06-01T12:34:56Z",
-    updatedAt: "2021-06-01T12:34:56Z",
-  },
-  {
-    id: "2",
-    title: "Black T-shirt",
-    price: 29.99,
-    images: [
-      "https://tailwindui.com/img/ecommerce-images/product-page-04-detail-product-shot-01.jpg?auto=webp&fit=clip&h=256&w=256",
-    ],
-    description:
-      "The classic black t-shirt that everyone loves. Our classic black t-shirt is made from heavyweight, preshrunk, 100% cotton and features a double needle bottom hem and sleeves for extra durability.",
-    category: "clothing",
-    tags: ["clothing", "t-shirt", "black"],
-    createdAt: "2021-06-01T12:34:56Z",
-    updatedAt: "2021-06-01T12:34:56Z",
-  },
-  {
-    id: "3",
-    title: "Red T-shirt",
-    price: 29.99,
-    images: [
-      "https://tailwindui.com/img/ecommerce-images/product-page-04-detail-product-shot-01.jpg?auto=webp&fit=clip&h=256&w=256",
-    ],
-    description:
-      "The classic red t-shirt that everyone loves. Our classic red t-shirt is made from heavyweight, preshrunk, 100% cotton and features a double needle bottom hem and sleeves for extra durability.",
-    category: "clothing",
-    tags: ["clothing", "t-shirt", "red"],
-    createdAt: "2021-06-01T12:34:56Z",
-  },
-];
-
-export type Payment = {
-  id: string;
-  amount: number;
-  status: "pending" | "processing" | "success" | "failed";
-  email: string;
-};
-
 export type ProductList = {
   id: string;
   title: string;
+  slug: string;
   price: number;
   images: string[];
   description: string;
@@ -107,7 +57,7 @@ export type ProductList = {
   updatedAt?: string;
 };
 
-export const columns: ColumnDef<ProductList>[] = [
+const columns: ColumnDef<ProductList>[] = [
   {
     id: "select",
     header: ({ table }) => (
@@ -203,7 +153,7 @@ export const columns: ColumnDef<ProductList>[] = [
     id: "actions",
     enableHiding: false,
     cell: ({ row }) => {
-      const proudct = row.original;
+      const product = row.original;
 
       return (
         <DropdownMenu>
@@ -216,13 +166,13 @@ export const columns: ColumnDef<ProductList>[] = [
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(proudct.id)}
+              onClick={() => navigator.clipboard.writeText(product.slug)}
             >
-              Copy product ID
+              Copy Product Link
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>View customer</DropdownMenuItem>
-            <DropdownMenuItem>View payment details</DropdownMenuItem>
+            <DropdownMenuItem>Delete Product</DropdownMenuItem>
+            <DropdownMenuItem>Order History</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       );
