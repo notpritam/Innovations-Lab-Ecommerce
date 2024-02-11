@@ -25,6 +25,7 @@ import {
 
 import Image from "next/image";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
 
 interface HeaderProps {
   className?: string;
@@ -38,13 +39,13 @@ const Header = ({ className }: HeaderProps) => {
   return (
     <header
       className={cn(
-        "flex relative w-full justify-between p-4 border-b-[1px] border-black",
+        "flex top-0 fixed h-[60px] w-full justify-between p-4 border-b-[1px] border-black",
         className
       )}
     >
-      <h1 className=" relative tracking-wide text-[1.1rem] ">
+      <Link href="/" className=" relative tracking-wide text-[1.1rem] ">
         Innovations Lab
-      </h1>
+      </Link>
       <div className="flex h-full items-center relative gap-8">
         <div className="relative h-[24px] w-[24px] ">
           <Image
