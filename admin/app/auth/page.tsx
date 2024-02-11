@@ -3,7 +3,7 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
 import { signIn, useSession } from "next-auth/react";
-import { useSearchParams, redirect } from "next/navigation";
+import { redirect } from "next/navigation";
 
 function Page() {
   const { status } = useSession();
