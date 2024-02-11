@@ -13,6 +13,15 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import useUserStore from "@/lib/store/store";
+import {
+  Menubar,
+  MenubarContent,
+  MenubarItem,
+  MenubarMenu,
+  MenubarSeparator,
+  MenubarShortcut,
+  MenubarTrigger,
+} from "@/components/ui/menubar";
 
 import Image from "next/image";
 import { cn } from "@/lib/utils";
@@ -50,9 +59,23 @@ const Header = ({ className }: HeaderProps) => {
           </span>
         </div>
 
-        <div className="h-[24px] text-black w-[16px]">
-          <AlignJustify color="#000000" strokeWidth={0.75} />
-        </div>
+        <Menubar className="border-none h-[24px] w-[24px] flex items-center pr-8 ">
+          <MenubarMenu>
+            <MenubarTrigger className="shadow-none border-none">
+              <AlignJustify color="#000000" strokeWidth={0.75} />
+            </MenubarTrigger>
+            <MenubarContent className="w-screen bg-white z-[1]">
+              <MenubarItem>
+                New Tab <MenubarShortcut>⌘T</MenubarShortcut>
+              </MenubarItem>
+              <MenubarItem>New Window</MenubarItem>
+              <MenubarSeparator />
+              <MenubarItem>Share</MenubarItem>
+              <MenubarSeparator />
+              <MenubarItem>Print</MenubarItem>
+            </MenubarContent>
+          </MenubarMenu>
+        </Menubar>
 
         {/* {status === "authenticated" ? (
           <>
