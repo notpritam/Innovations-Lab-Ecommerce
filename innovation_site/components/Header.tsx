@@ -71,15 +71,19 @@ const Header = ({ className }: HeaderProps) => {
             <MenubarTrigger className="shadow-none border-none">
               <AlignJustify color="#000000" strokeWidth={0.75} />
             </MenubarTrigger>
-            <MenubarContent className="w-screen bg-white z-[1]">
-              <MenubarItem>
-                New Tab <MenubarShortcut>⌘T</MenubarShortcut>
-              </MenubarItem>
-              <MenubarItem>New Window</MenubarItem>
-              <MenubarSeparator />
-              <MenubarItem>Share</MenubarItem>
-              <MenubarSeparator />
-              <MenubarItem>Print</MenubarItem>
+            <MenubarContent className="w-screen bg-white z-[1] items-center flex justify-between flex-col p-0">
+              <div className="p-4 border-b-[1px]  border-black w-full justify-between flex items-center">
+                My Profile
+              </div>
+              <div className="p-4 border-b-[1px]  border-black w-full justify-between flex items-center">
+                Orders
+              </div>
+              <div className="p-4 border-b-[1px] border-black w-full justify-between flex items-center">
+                Logout
+              </div>
+              <div className="p-4 border-b-[1px] border-black w-full justify-between flex items-center">
+                Contact Us
+              </div>
             </MenubarContent>
           </MenubarMenu>
         </Menubar>

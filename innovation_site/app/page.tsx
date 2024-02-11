@@ -10,7 +10,7 @@ import Link from "next/link";
 export default function Home() {
   return (
     <>
-      <Header className="fixed shadow-lg z-[2] bg-white" />
+      <Header />
       <div className="h-[300px] border border-black w-full">
         <ThreeJS />
       </div>
