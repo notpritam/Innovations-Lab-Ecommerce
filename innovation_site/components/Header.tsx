@@ -15,15 +15,25 @@ import {
 import useUserStore from "@/lib/store/store";
 
 import Image from "next/image";
+import { cn } from "@/lib/utils";
 
-const Header = () => {
+interface HeaderProps {
+  className?: string;
+}
+
+const Header = ({ className }: HeaderProps) => {
   const { status, data: session } = useSession();
 
   const { cart } = useUserStore();
 
   return (
-    <header className="flex relative w-full justify-between p-4 border-b-[1px] border-black">
-      <h1 className=" relative tracking-wide text-[1.1rem] font-medium">
+    <header
+      className={cn(
+        "flex relative w-full justify-between p-4 border-b-[1px] border-black",
+        className
+      )}
+    >
+      <h1 className=" relative tracking-wide text-[1.1rem] ">
         Innovations Lab
       </h1>
       <div className="flex h-full items-center relative gap-8">

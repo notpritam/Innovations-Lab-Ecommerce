@@ -8,11 +8,11 @@ import Image from "next/image";
 export default function Home() {
   return (
     <>
-      <Header />
-      <div className="h-[300px] w-full">
+      <Header className="fixed shadow-lg z-[2] bg-white" />
+      <div className="h-[300px] border border-black w-full">
         <ThreeJS />
       </div>
-      <div className="p-4 flex flex-col gap-8 items-start">
+      <div className="p-4 flex flex-col gap-8 items-start border-b-[1px] border-black">
         <div className=" flex flex-col">
           <span className="text-[3em] leading-[130%] font-light">
             Discover endless possibilities at our Innovation Lab Ecommerce
@@ -26,6 +26,34 @@ export default function Home() {
           Browse Models
           <ExternalLink color="#000000" strokeWidth={0.75} />
         </Button>
+      </div>
+
+      <div className="">
+        <div className=" px-4 py-4 border-b-[1px] border-black">
+          <span className="text-2xl">Featured Products</span>
+        </div>
+
+        <div className="grid grid-cols-2">
+          {Array.from({ length: 4 }).map((_, index) => (
+            <>
+              <div className="flex flex-col border-t-[1px] border-black ">
+                <div className="min-h-[300px] w-full border-r-[1px] border-black ">
+                  <Image
+                    alt="Product Image"
+                    className="h-[300px] w-full"
+                    height={300}
+                    width={300}
+                    src="/images/logan.jpeg"
+                  />
+                </div>
+                <div className="flex flex-col gap-1 p-2 border-r-[1px] border-black">
+                  <span className="text-[1.25rem]">Product Name</span>
+                  <span className="text-sm">₹ 1,234</span>
+                </div>
+              </div>
+            </>
+          ))}
+        </div>
       </div>
     </>
   );
