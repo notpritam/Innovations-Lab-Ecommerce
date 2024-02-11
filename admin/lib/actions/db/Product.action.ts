@@ -43,7 +43,7 @@ export const addProductDB = async (product: any): Promise<IProduct | null> => {
 
     const productDetails: IProduct = {
       title: product.title,
-      slug: product.slug,
+      slug: product.title.toLowerCase().split(" ").join("-"),
       price: product.price,
       images: product.images,
       description: product.description,
