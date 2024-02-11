@@ -43,7 +43,10 @@ const Header = ({ className }: HeaderProps) => {
         className
       )}
     >
-      <Link href="/" className=" relative tracking-wide text-[1.1rem] ">
+      <Link
+        href="/"
+        className=" font-medium relative tracking-wide text-[1.1rem] "
+      >
         Innovations Lab
       </Link>
       <div className="flex h-full items-center relative gap-8">

@@ -16,23 +16,22 @@ export default function Home() {
       </div>
       <div className="p-4 flex flex-col gap-8 items-start border-b-[1px] border-black">
         <div className=" flex flex-col">
-          <span className="text-[3em] leading-[130%] font-light">
+          <span className="text-[2.4em] leading-[120%] font-medium">
             Discover endless possibilities at our Innovation Lab Ecommerce
           </span>
-          <span className="text-[1.5rem] font-thin">
+          <span className="text-[1.5rem] font-thin font-hind">
             Print your ideas or shop our curated 3D models today!
           </span>
         </div>
 
-        <Button className="bg-transparent flex items-center gap-4 border-opacity-15 text-black border-[1px] border-black">
+        <Button className="bg-transparent flex rounded-none border-black items-center font-hind gap-2 text-black border-[1px] shadow-none">
           Browse Models
-          <ExternalLink color="#000000" strokeWidth={0.75} />
         </Button>
       </div>
 
       <div className="">
         <div className=" px-4 py-4 border-b-[1px] border-black">
-          <span className="text-2xl">Featured Products</span>
+          <span className="text-2xl font-medium">Featured Products</span>
         </div>
 
         <div className="grid grid-cols-2">
@@ -50,8 +49,10 @@ export default function Home() {
                     />
                   </div>
                   <div className="flex flex-col gap-1 p-2 border-r-[1px] border-black">
-                    <span className="text-[1.25rem]">Product Name</span>
-                    <span className="text-sm">₹ 1,234</span>
+                    <span className="text-[1.15rem] font-medium">
+                      Product Name
+                    </span>
+                    <span className="text-sm font-poppins">₹ 1,234</span>
                   </div>
                 </div>
               </Link>
