@@ -39,7 +39,7 @@ const Header = ({ className }: HeaderProps) => {
   return (
     <header
       className={cn(
-        "flex top-0 fixed h-[60px] w-full justify-between p-4 border-b-[1px] border-black",
+        "flex top-0 fixed h-[60px] bg-white z-[10] w-full justify-between p-4 border-b-[1px] border-black",
         className
       )}
     >
