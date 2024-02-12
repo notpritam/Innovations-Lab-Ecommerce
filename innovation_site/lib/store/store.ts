@@ -2,11 +2,20 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
 interface UserState {
+  user: User | null;
   bears: number;
+  setUser: (user: User) => void;
   cart: CartProduct[];
   removeItemFromCart: (id: string, remove?: boolean) => void;
   addInCart: (product: CartProduct) => void;
   decreaseCount: (id: string) => void; // Added decreaseCount function
+}
+
+interface User {
+  id: string;
+  name: string;
+  email: string;
+  image: string;
 }
 
 interface CartProduct {
@@ -20,7 +29,15 @@ interface CartProduct {
 const useUserStore = create<UserState>()(
   persist(
     (set) => ({
+      user: null,
       bears: 0,
+      setUser: (user: User) => {
+        set((state) => {
+          return {
+            user: user,
+          };
+        });
+      },
       cart: [] as any,
       removeItemFromCart: (id: string, remove?: boolean) => {
         set((state) => {

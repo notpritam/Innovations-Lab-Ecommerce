@@ -1,6 +1,6 @@
 "use client";
 import { ShoppingBagIcon, AlignJustify } from "lucide-react";
-import React from "react";
+import React, { useEffect } from "react";
 import { Button } from "./ui/button";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -35,7 +35,16 @@ interface HeaderProps {
 const Header = ({ className }: HeaderProps) => {
   const { status, data: session } = useSession();
 
-  const { cart } = useUserStore();
+  const { cart, setUser } = useUserStore();
+
+  useEffect(() => {
+    setUser({
+      id: "123",
+      name: session?.user?.name || "",
+      email: session?.user?.email || "",
+      image: session?.user?.image || "",
+    });
+  }, [session, setUser]);
 
   return (
     <header
