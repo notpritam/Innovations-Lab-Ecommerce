@@ -10,7 +10,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
 
   console.log(slug, "this is slug");
   return (
-    <div className="flex flex-col mb-[60px]">
+    <div className="flex flex-col">
       <Header className="" />
       <div className="breadcrumbs text-[12px] p-4 mt-[60px] flex w-full gap-4">
         <Link href="/" className="opacity-35">

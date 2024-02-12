@@ -10,7 +10,7 @@ interface ProductActionProps {
 function ProductAction({ children, slug }: ProductActionProps) {
   const { addInCart } = useUserStore();
   return (
-    <div className="border w-full flex h-[60px] fixed bottom-0">
+    <div className="border w-full flex h-[60px] sticky bottom-0">
       <button
         onClick={() => {
           addInCart({

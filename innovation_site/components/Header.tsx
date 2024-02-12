@@ -74,9 +74,12 @@ const Header = ({ className }: HeaderProps) => {
             <MenubarContent className="w-screen bg-white z-[1] items-center flex justify-between flex-col p-0">
               {status === "authenticated" ? (
                 <>
-                  <div className="p-4 border-b-[1px]  border-black w-full justify-between flex items-center">
+                  <Link
+                    href={"/profile"}
+                    className="p-4 border-b-[1px]  border-black w-full justify-between flex items-center"
+                  >
                     My Profile
-                  </div>
+                  </Link>
                 </>
               ) : (
                 <>
