@@ -1,3 +1,4 @@
+"use client";
 import {
   Sheet,
   SheetContent,
@@ -12,8 +13,11 @@ import Image from "next/image";
 import React from "react";
 import { Input } from "./ui/input";
 import { Trash } from "lucide-react";
+import useUserStore from "@/lib/store/store";
 
 function Sidebar({ children }: { children: React.ReactNode }) {
+  const { cart, addInCart, removeItemFromCart } = useUserStore();
+  const total = cart.reduce((acc, item) => acc + item.price * item.count, 0);
   return (
     <Sheet>
       <SheetTrigger>{children}</SheetTrigger>
@@ -21,12 +25,12 @@ function Sidebar({ children }: { children: React.ReactNode }) {
         <SheetHeader className="items-start ">
           <SheetTitle className="uppercase">Cart</SheetTitle>
           <SheetDescription className="text-left">
-            0 items in your cart
+            {cart.length} items in your cart
           </SheetDescription>
         </SheetHeader>
 
         <div className="h-full overflow-hidden overflow-y-scroll gap-2 flex flex-col">
-          {[1, 2, 3, 4, 5].map((item) => (
+          {cart.map((item) => (
             <>
               <div className="flex gap-2">
                 <Image
@@ -34,21 +38,44 @@ function Sidebar({ children }: { children: React.ReactNode }) {
                   className="h-[100px] w-[100px]   object-cover object-center"
                   height={100}
                   width={100}
-                  src="/images/logan.jpeg"
+                  src={item.image}
                 />
                 <div className="flex flex-col">
                   <span className="text-[1.15rem] font-medium">
-                    Product Name
+                    {item.name}
                   </span>
-                  <span className="font-poppins">₹ 1,234</span>
+                  <span className="font-poppins">₹ {item.price}</span>
 
                   <div className="flex justify-between items-center">
                     <div className="flex gap-4 items-center text-[1.5rem]">
-                      <span>-</span>
-                      <span className="text-[1.25rem]">4</span>
-                      <span>+</span>
+                      <span
+                        onClick={() => {
+                          removeItemFromCart(item.id, false);
+                        }}
+                      >
+                        -
+                      </span>
+                      <span className="text-[1.25rem]">{item.count}</span>
+                      <span
+                        onClick={() => {
+                          addInCart({
+                            id: item.id,
+                            name: item.name,
+                            price: item.price,
+                            count: 1,
+                            image: item.image,
+                          });
+                        }}
+                      >
+                        +
+                      </span>
                     </div>
-                    <Trash size={16} />
+                    <Trash
+                      onClick={() => {
+                        removeItemFromCart(item.id, true);
+                      }}
+                      size={16}
+                    />
                   </div>
                 </div>
               </div>
@@ -60,7 +87,7 @@ function Sidebar({ children }: { children: React.ReactNode }) {
           <button className="w-full uppercase bg-white border border-black p-4">
             Checkout
           </button>
-          <span className="text-xl font-medium">Total: ₹ 4,000</span>
+          <span className="text-xl font-medium">Total: ₹ {total}</span>
         </SheetFooter>
       </SheetContent>
     </Sheet>

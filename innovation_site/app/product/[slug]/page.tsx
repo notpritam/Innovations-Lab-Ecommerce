@@ -1,4 +1,5 @@
 import Header from "@/components/Header";
+import ProductAction from "@/components/ProductAction";
 import { ThreeJS } from "@/components/ThreeJs";
 import Image from "next/image";
 import Link from "next/link";
@@ -6,6 +7,7 @@ import React from "react";
 
 const Page = async ({ params }: { params: { slug: string } }) => {
   const { slug } = params;
+
   console.log(slug, "this is slug");
   return (
     <div className="flex flex-col mb-[60px]">
@@ -54,12 +56,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
         </p>
       </div>
 
-      <div className="border w-full flex h-[60px] fixed bottom-0">
-        <button className=" w-full bg-white border border-black p-4">
-          Add to cart
-        </button>
-        <button className="w-full text-white bg-black p-4">Buy now</button>
-      </div>
+      <ProductAction slug={slug} />
 
       <div className="border-y-[1px] border-black">
         <span className="">
