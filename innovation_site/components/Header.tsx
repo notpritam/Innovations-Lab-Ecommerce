@@ -91,9 +91,12 @@ const Header = ({ className }: HeaderProps) => {
                   </div>
                 </>
               )}
-              <div className="p-4 border-b-[1px]  border-black w-full justify-between flex items-center">
+              <Link
+                href={"/orders"}
+                className="p-4 border-b-[1px]  border-black w-full justify-between flex items-center"
+              >
                 Orders
-              </div>
+              </Link>
               {status === "authenticated" ? (
                 <>
                   <div
@@ -110,31 +113,6 @@ const Header = ({ className }: HeaderProps) => {
             </MenubarContent>
           </MenubarMenu>
         </Menubar>
-
-        {/* {status === "authenticated" ? (
-          <>
-            <DropdownMenu>
-              <DropdownMenuTrigger>
-                <Avatar>
-                  <AvatarImage src="https://github.com/shadcn.png" />
-                  <AvatarFallback>CN</AvatarFallback>
-                </Avatar>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent>
-                <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem>Profile</DropdownMenuItem>
-                <DropdownMenuItem>Billing</DropdownMenuItem>
-                <DropdownMenuItem>Team</DropdownMenuItem>
-                <DropdownMenuItem onClick={() => signOut()}>
-                  Logout
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </>
-        ) : (
-          <Button onClick={() => signIn("google")}>Login</Button>
-        )} */}
       </div>
     </header>
   );
