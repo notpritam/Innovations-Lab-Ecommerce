@@ -21,18 +21,18 @@ function Sidebar({ children }: { children: React.ReactNode }) {
   return (
     <Sheet>
       <SheetTrigger>{children}</SheetTrigger>
-      <SheetContent className="p-4 flex flex-col justify-between w-full">
-        <SheetHeader className="items-start ">
+      <SheetContent className=" flex p-0 flex-col justify-between w-full">
+        <SheetHeader className="items-start px-4 pt-4 ">
           <SheetTitle className="uppercase">Cart</SheetTitle>
           <SheetDescription className="text-left">
             {cart.length} items in your cart
           </SheetDescription>
         </SheetHeader>
 
-        <div className="h-full overflow-hidden overflow-y-scroll gap-2 flex flex-col">
+        <div className="h-full p-4 overflow-hidden overflow-y-scroll gap-2 flex flex-col">
           {cart.map((item) => (
             <>
-              <div className="flex gap-2">
+              <div className="flex gap-2 border border-black">
                 <Image
                   alt="Product Image"
                   className="h-[100px] w-[100px]   object-cover object-center"
@@ -83,7 +83,7 @@ function Sidebar({ children }: { children: React.ReactNode }) {
           ))}
         </div>
 
-        <SheetFooter>
+        <SheetFooter className="p-4">
           <button className="w-full uppercase bg-white border border-black p-4">
             Checkout
           </button>
