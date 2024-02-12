@@ -1,7 +1,11 @@
 import React from "react";
 
 function loading() {
-  return <div>loading slug</div>;
+  return (
+    <div className="h-screen w-screen backdrop-blur text-[3rem] justify-between flex items-center">
+      Loading...
+    </div>
+  );
 }
 
 export default loading;

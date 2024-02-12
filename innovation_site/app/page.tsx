@@ -1,3 +1,4 @@
+import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { ThreeJS } from "@/components/ThreeJs";
 import { Button } from "@/components/ui/button";
@@ -10,7 +11,6 @@ import Link from "next/link";
 export default function Home() {
   return (
     <>
-      <Header />
       <div className="h-[300px] border border-black w-full">
         <ThreeJS />
       </div>
@@ -24,9 +24,12 @@ export default function Home() {
           </span>
         </div>
 
-        <Button className="bg-transparent flex rounded-none border-black items-center font-hind gap-2 text-black border-[1px] shadow-none">
+        <Link
+          href={"/product"}
+          className="bg-transparent px-4 py-2 flex rounded-none border-black items-center font-hind gap-2 text-black border-[1px] shadow-none"
+        >
           Browse Models
-        </Button>
+        </Link>
       </div>
 
       <div className="">
@@ -58,28 +61,6 @@ export default function Home() {
               </Link>
             </>
           ))}
-        </div>
-      </div>
-
-      <div className="grid grid-cols-2 uppercase w-full">
-        <div className="border-t-[1px] border-black border-r-[1px] items-center justify-center flex p-4">
-          <span className="text-[1rem]">Instagram</span>
-        </div>
-        <div className="border-t-[1px] border-black  items-center justify-center flex p-4 ">
-          <span className="text-[1rem]">Contact</span>
-        </div>
-
-        <div className="border-[1px] border-black col-span-2 p-4">
-          <Input
-            placeholder="Email"
-            className="border-none text-[1.25rem] p-0 focus:border-none rounded-none"
-          />
-        </div>
-        <div className="border-[1px] border-black border-t-0 items-center justify-center flex p-4 col-span-2">
-          <span className="text-[1rem]">Subscribe</span>
-        </div>
-        <div className="border-[1px] border-black border-t-0 items-center justify-center text-[10px] flex p-4 py-8 col-span-2">
-          <span className="text-[12px]">&copy; Innovation Lab 2024</span>
         </div>
       </div>
     </>

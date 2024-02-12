@@ -5,6 +5,8 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 
 import SessionWrapper from "@/components/SessionWrapper";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,7 +27,11 @@ export default function RootLayout({
           "min-h-screen bg-background font-montserrat  antialiased"
         )}
       >
-        <SessionWrapper>{children}</SessionWrapper>
+        <SessionWrapper>
+          <Header />
+          {children}
+          <Footer />
+        </SessionWrapper>
       </body>
     </html>
   );
