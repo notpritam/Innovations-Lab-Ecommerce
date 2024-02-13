@@ -65,7 +65,7 @@ const Page = () => {
           </DrawerFooter>
         </DrawerContent>
 
-        <div className="p-4 border-b-[1px] border-black">
+        <div className="p-4  border-black">
           <span className="text-[1.25rem] font-medium">Products</span>
         </div>
 
