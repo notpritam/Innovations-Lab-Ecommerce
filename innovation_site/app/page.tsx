@@ -38,7 +38,7 @@ export default function Home() {
       </div>
 
       <div className="">
-        <div className=" px-4 py-4 border-b-[1px] border-black">
+        <div className=" px-4 py-4  border-black">
           <span className="text-2xl font-medium">Featured Products</span>
         </div>
 
