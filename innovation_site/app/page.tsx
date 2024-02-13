@@ -50,15 +50,15 @@ export default function Home() {
                   <div className="min-h-[300px] w-full border-r-[1px] border-black ">
                     <Image
                       alt="Product Image"
-                      className="h-[300px] w-full"
+                      className="h-[300px] w-full object-cover object-center"
                       height={300}
                       width={300}
-                      src="/images/logan.jpeg"
+                      src={`/images/${index + 1}.jpg`}
                     />
                   </div>
                   <div className="flex flex-col gap-1 p-2 border-r-[1px] border-black">
                     <span className="text-[1.15rem] font-medium">
-                      Product Name
+                      Product Name {index + 1}
                     </span>
                     <span className="text-sm font-poppins">₹ 1,234</span>
                   </div>
