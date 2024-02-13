@@ -70,7 +70,7 @@ const Page = () => {
         </div>
 
         <div className="grid grid-cols-2">
-          {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item) => (
+          {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item, index) => (
             <>
               <Link href={`/product/title-${item}`}>
                 <div className="flex  flex-col border-t-[1px] border-black ">
@@ -80,7 +80,7 @@ const Page = () => {
                       className="h-[300px] w-full object-cover object-center"
                       height={300}
                       width={300}
-                      src="/images/logan.jpeg"
+                      src={`/images/${(index % 4) + 1}.jpg`}
                     />
                   </div>
                   <div className="flex flex-col gap-1 p-2 border-r-[1px] border-black">
