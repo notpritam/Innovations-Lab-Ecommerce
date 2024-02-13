@@ -1,5 +1,5 @@
 "use client";
-import { ShoppingBagIcon, AlignJustify } from "lucide-react";
+import { ShoppingBagIcon, AlignJustify, Search } from "lucide-react";
 import React, { useEffect } from "react";
 import { signIn, signOut, useSession } from "next-auth/react";
 
@@ -15,6 +15,7 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import Sidebar from "./Sidebar";
+import { usePathname, useSearchParams } from "next/navigation";
 
 interface HeaderProps {
   className?: string;
@@ -22,6 +23,10 @@ interface HeaderProps {
 
 const Header = ({ className }: HeaderProps) => {
   const { status, data: session } = useSession();
+
+  const pathname = usePathname();
+
+  // console.log(pathname, "this is my path");
 
   const { cart, setUser } = useUserStore();
 
@@ -48,6 +53,11 @@ const Header = ({ className }: HeaderProps) => {
         Innovations Lab
       </Link>
       <div className="flex h-full items-center relative gap-8">
+        {pathname != "/search" && (
+          <Link href={"/search"}>
+            <Search strokeWidth={0.75} />
+          </Link>
+        )}
         <Sidebar>
           <div className="relative h-[24px] w-[24px] ">
             <Image
