@@ -7,13 +7,18 @@ import { ExternalLink } from "lucide-react";
 // importing necessary functions
 import Image from "next/image";
 import Link from "next/link";
+import { Suspense } from "react";
+import Loading from "./loading";
+import LoadingFallback from "@/components/LoadingFallback";
 
 export default function Home() {
   return (
     <>
-      <div className="h-[300px] border border-black w-full">
-        <ThreeJS />
-      </div>
+      <Suspense fallback={<LoadingFallback className="h-[300px]" />}>
+        <div className="h-[300px] border border-black w-full">
+          <ThreeJS />
+        </div>
+      </Suspense>
       <div className="p-4 flex flex-col gap-8 items-start border-b-[1px] border-black">
         <div className=" flex flex-col">
           <span className="text-[2.4em] leading-[120%] font-medium">

@@ -1,9 +1,10 @@
 import Header from "@/components/Header";
+import LoadingFallback from "@/components/LoadingFallback";
 import ProductAction from "@/components/ProductAction";
 import { ThreeJS } from "@/components/ThreeJs";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { Suspense } from "react";
 
 const Page = async ({ params }: { params: { slug: string } }) => {
   const { slug } = params;
@@ -21,9 +22,11 @@ const Page = async ({ params }: { params: { slug: string } }) => {
         <span className="opacity-35">/</span>
         <span> {slug}</span>
       </div>
-      <div className="border-[1px] border-black h-[400px]">
-        <ThreeJS />
-      </div>
+      <Suspense fallback={<LoadingFallback className="h-[400px]" />}>
+        <div className="h-[400px] border border-black w-full">
+          <ThreeJS />
+        </div>
+      </Suspense>
 
       <div className="flex flex-nowrap border-y-[1px] overflow-hidden overflow-x-scroll">
         {[1, 2, 3, 4, 5].map((item) => (

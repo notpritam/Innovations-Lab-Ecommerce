@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { Mail, Map, Package2, Pencil, Phone, User } from "lucide-react";
+import { LogOut, Mail, Map, Package2, Pencil, Phone, User } from "lucide-react";
 import Image from "next/image";
 import useUserStore from "@/lib/store/store";
 function UserProfile() {
@@ -45,10 +45,15 @@ function UserProfile() {
 
             <span>Edit Details</span>
           </div>
-          <div className="p-4  justify-center flex gap-4">
+          <div className="p-4 border-b-[1px] border-black  justify-center flex gap-4">
             <Package2 strokeWidth={0.75} />
 
             <span>View Past Orders</span>
+          </div>
+          <div className="p-4  justify-center flex gap-4">
+            <LogOut strokeWidth={0.75} />
+
+            <span>Logout</span>
           </div>
         </>
       )}

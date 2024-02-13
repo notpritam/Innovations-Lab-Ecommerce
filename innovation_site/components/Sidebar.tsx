@@ -1,6 +1,7 @@
 "use client";
 import {
   Sheet,
+  SheetClose,
   SheetContent,
   SheetDescription,
   SheetFooter,
@@ -12,8 +13,9 @@ import Image from "next/image";
 
 import React from "react";
 import { Input } from "./ui/input";
-import { Trash } from "lucide-react";
+import { Frown, Trash } from "lucide-react";
 import useUserStore from "@/lib/store/store";
+import Link from "next/link";
 
 function Sidebar({ children }: { children: React.ReactNode }) {
   const { cart, addInCart, removeItemFromCart } = useUserStore();
@@ -30,7 +32,16 @@ function Sidebar({ children }: { children: React.ReactNode }) {
         </SheetHeader>
 
         <div className="h-full p-4 overflow-hidden overflow-y-scroll gap-2 flex flex-col">
-          {cart.map((item) => (
+          {cart.length == 0 && (
+            <div className="h-full p-4 gap-4 w-full border-dashed border-black border-[1px]  flex flex-col items-center justify-center">
+              <Frown strokeWidth={0.35} size={124} />
+              <span className="text-xl font-medium">Empty Cart</span>
+              <div className="w-full border-[1px] border-black p-4 flex items-center justify-center">
+                Continue Shopping
+              </div>
+            </div>
+          )}
+          {cart?.map((item) => (
             <>
               <div className="flex gap-2 border border-black">
                 <Image
@@ -83,12 +94,20 @@ function Sidebar({ children }: { children: React.ReactNode }) {
           ))}
         </div>
 
-        <SheetFooter className="p-4">
-          <button className="w-full uppercase bg-white border border-black p-4">
-            Checkout
-          </button>
-          <span className="text-xl font-medium">Total: ₹ {total}</span>
-        </SheetFooter>
+        {cart.length > 0 && (
+          <SheetFooter className="p-4">
+            <SheetClose asChild>
+              <Link
+                href="/checkout"
+                className="w-full uppercase flex items-center justify-center bg-white border border-black p-4"
+              >
+                Checkout
+              </Link>
+            </SheetClose>
+
+            <span className="text-xl font-medium">Total: ₹ {total}</span>
+          </SheetFooter>
+        )}
       </SheetContent>
     </Sheet>
   );
