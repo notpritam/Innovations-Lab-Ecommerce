@@ -53,8 +53,8 @@ const Header = ({ className }: HeaderProps) => {
         Innovations Lab
       </Link>
       <div className="flex h-full items-center relative gap-8">
-        {pathname != "/search" && (
-          <Link href={"/search"}>
+        {pathname != "/product" && (
+          <Link href={"/product"}>
             <Search strokeWidth={0.75} />
           </Link>
         )}
