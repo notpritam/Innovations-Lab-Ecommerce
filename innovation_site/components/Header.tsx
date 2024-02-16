@@ -36,6 +36,8 @@ const Header = ({ className }: HeaderProps) => {
       name: session?.user?.name || "",
       email: session?.user?.email || "",
       image: session?.user?.image || "",
+      phone: "",
+      address: "",
     });
   }, [session, setUser]);
 

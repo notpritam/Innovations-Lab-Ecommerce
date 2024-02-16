@@ -37,6 +37,8 @@ const createUser = async (user: any) => {
     name: user.name,
     email: user.email,
     image: user.image,
+    address: "",
+    phone: "",
   };
 
   const newUser = new User(userDetails);
