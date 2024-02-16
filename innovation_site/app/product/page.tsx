@@ -15,6 +15,7 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer";
 import { Button } from "@/components/ui/button";
+import HeadingTitle from "@/components/shared/Heading";
 
 const Page = () => {
   return (
@@ -65,15 +66,13 @@ const Page = () => {
           </DrawerFooter>
         </DrawerContent>
 
-        <div className="p-4  border-black">
-          <span className="text-[1.25rem] font-medium">Products</span>
-        </div>
+        <HeadingTitle title="Products" />
 
-        <div className="grid grid-cols-2">
+        <div className="grid grid-cols-2 lg:grid-cols-4 ">
           {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item, index) => (
             <>
               <Link href={`/product/title-${item}`}>
-                <div className="flex  flex-col border-t-[1px] border-black ">
+                <div className="flex  flex-col  border-b-[1px] border-black ">
                   <div className="min-h-[300px] w-full border-r-[1px] border-black ">
                     <Image
                       alt="Product Image"

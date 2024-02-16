@@ -46,7 +46,7 @@ export default function Home() {
 
       <div className="">
         <HeadingTitle title="Featured Products" />
-        <div className="grid grid-cols-2">
+        <div className="grid grid-cols-2 lg:grid-cols-4">
           {Array.from({ length: 4 }).map((_, index) => (
             <>
               <Link key={index} href={`/product/title-${index}`}>

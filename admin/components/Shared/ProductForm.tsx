@@ -20,7 +20,7 @@ import {
 } from "@/components/ui/select";
 import Image from "next/image";
 import { Textarea } from "../ui/textarea";
-import { UploadDropzone } from "@/utils/uploadthing";
+import { UploadButton, UploadDropzone } from "@/utils/uploadthing";
 import { arrayMove } from "@dnd-kit/sortable";
 import ImageItem from "./ImageItem";
 import { Button } from "../ui/button";
@@ -36,6 +36,7 @@ export interface AddProductProps {
   images: string[];
   category: string;
   tags: string[];
+  model: string;
 }
 
 export interface ImageItemProps {
@@ -52,6 +53,7 @@ const ProductForm = () => {
     images: [],
     category: "",
     tags: [],
+    model: "",
   });
   const [imageList, setImageList] = useState<ImageItemProps[]>([]);
 
@@ -141,6 +143,7 @@ const ProductForm = () => {
             images: [],
             category: "",
             tags: [],
+            model: "",
           });
           setImageList([]);
         })
@@ -327,6 +330,24 @@ const ProductForm = () => {
           </SortableContext>
         </div>
       </DndContext>
+
+      <div>
+        <Label>Upload Model</Label>
+        <UploadButton
+          endpoint="modelUploader"
+          onClientUploadComplete={(res) => {
+            // Do something with the response
+            const data = res[0];
+            console.log("Files: ", res[0]);
+            setAddProduct({ ...addProduct, model: data.url });
+            alert("Upload Completed");
+          }}
+          onUploadError={(error: Error) => {
+            // Do something with the error.
+            alert(`ERROR! ${error.message}`);
+          }}
+        />
+      </div>
 
       <Button onClick={() => handleAddProduct()}>Submit</Button>
     </div>
