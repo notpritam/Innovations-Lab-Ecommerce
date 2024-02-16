@@ -11,6 +11,7 @@ export interface IUser extends Document {
   // password: string;
   image: string;
   role: string;
+  address: string;
 }
 
 const userSchema = new Schema(
@@ -25,6 +26,7 @@ const userSchema = new Schema(
       default: "user",
       required: true,
     },
+    address: { type: String, default: "" },
   },
   { timestamps: true }
 );

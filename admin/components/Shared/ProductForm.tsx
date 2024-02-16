@@ -98,7 +98,8 @@ const ProductForm = () => {
       !addProduct.title ||
       !addProduct.description ||
       !addProduct.price ||
-      !addProduct.category
+      !addProduct.category ||
+      !addProduct.model
     ) {
       if (!addProduct.title) {
         toast({
@@ -119,6 +120,11 @@ const ProductForm = () => {
         toast({
           title: "Error",
           description: "Category is required.",
+        });
+      } else if (!addProduct.model) {
+        toast({
+          title: "Error",
+          description: "Model is required.",
         });
       }
       return;

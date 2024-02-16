@@ -9,6 +9,7 @@ export interface IProduct {
   description: string;
   category: mongoose.Schema.Types.ObjectId;
   tags: string[];
+  model: string;
   createdBy: mongoose.Schema.Types.ObjectId;
 }
 
@@ -21,6 +22,7 @@ const productSchema = new Schema(
     description: { type: String, required: true },
     category: { type: mongoose.Schema.Types.ObjectId, ref: "Category" },
     tags: { type: [String], required: true },
+    model: { type: String, required: true },
     createdBy: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   },
   { timestamps: true }

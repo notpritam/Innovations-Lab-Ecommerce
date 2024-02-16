@@ -20,6 +20,7 @@ export const getProductsDB = async () => {
         description: product.description,
         category: product.category.name,
         tags: product.tags,
+        model: product.model,
         createdAt: product.createdAt.toString(),
         updatedAt: product.updatedAt?.toString(),
       };
@@ -50,6 +51,7 @@ export const addProductDB = async (product: any): Promise<IProduct | null> => {
       category: category?._id,
       tags: product.tags,
       createdBy: user._id,
+      model: product.model,
     };
 
     const newProduct = new Product(productDetails);
